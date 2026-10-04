@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>График смен — расписание смен, будильник и погода</title>
+<meta name="description" content="График смен: календарь рабочих и выходных дней, свой график смен, будильник к началу смены и погода на время ближайшей смены. Android 7.0 и выше.">
+<link rel="icon" href="images/icon.png">
+<style>
+:root{
+  --bg:#0B1224; --bg2:#111B33; --card:#16223F; --stroke:#24314F;
+  --text:#EAF0FF; --muted:#93A1C4; --accent:#3D7BFF; --accent2:#A855F7;
+  --radius:18px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:linear-gradient(160deg,var(--bg) 0%, #0D1730 45%, #131033 100%);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header{padding:56px 0 28px;text-align:center}
+.badge{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(61,123,255,.12);border:1px solid rgba(61,123,255,.35);
+  color:#BFD2FF;border-radius:999px;padding:7px 16px;font-size:14px;font-weight:600;
+}
+.logo{width:84px;height:84px;border-radius:22px;display:block;margin:22px auto 18px;
+  box-shadow:0 12px 34px rgba(61,123,255,.35)}
+h1{font-size:clamp(34px,6vw,54px);line-height:1.1;margin:0 0 14px;letter-spacing:-.02em;font-weight:800}
+.lead{font-size:clamp(16px,2.4vw,20px);color:var(--muted);max-width:720px;margin:0 auto}
+.cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:30px 0 8px}
+.btn{
+  display:inline-block;padding:15px 30px;border-radius:14px;font-weight:700;
+  text-decoration:none;font-size:17px;border:1px solid transparent;
+}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;
+  box-shadow:0 10px 30px rgba(61,123,255,.35)}
+.btn-ghost{background:transparent;border-color:var(--stroke);color:var(--text)}
+.btn:hover{transform:translateY(-2px)}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:34px 0 0}
+.fact{background:var(--card);border:1px solid var(--stroke);border-radius:14px;padding:16px;text-align:center}
+.fact b{display:block;font-size:22px;font-weight:800}
+.fact span{color:var(--muted);font-size:14px}
+section{padding:56px 0}
+h2{font-size:clamp(26px,4vw,36px);margin:0 0 8px;letter-spacing:-.01em;font-weight:800}
+.sub{color:var(--muted);margin:0 0 28px;max-width:640px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--stroke);border-radius:var(--radius);padding:24px}
+.card h3{margin:0 0 8px;font-size:19px;font-weight:700}
+.card p{margin:0;color:var(--muted);font-size:15.5px}
+.card ul{margin:10px 0 0;padding-left:20px;color:var(--muted);font-size:15.5px}
+.card li{margin:5px 0}
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.shot{background:var(--card);border:1px solid var(--stroke);border-radius:var(--radius);overflow:hidden}
+.shot img{width:100%;display:block}
+.shot figcaption{padding:14px 16px;color:var(--muted);font-size:14.5px}
+.note{background:rgba(168,85,247,.10);border:1px solid rgba(168,85,247,.32);
+  border-radius:14px;padding:18px 20px;color:#DCC7FF;font-size:15.5px;margin-top:26px}
+.note b{color:#fff}
+footer{border-top:1px solid var(--stroke);padding:34px 0 50px;color:var(--muted);font-size:14.5px}
+footer a{color:#BFD2FF}
+@media(max-width:640px){
+  header{padding:40px 0 20px}
+  .shots{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="badge">Android 7.0 и выше · русский язык</div>
+    <img class="logo" src="images/icon.png" alt="График смен">
+    <h1>График смен</h1>
+    <p class="lead">Расписание смен, календарь рабочих и выходных дней, будильник к началу смены
+      и погода на время ближайшей смены. Работает без интернета.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="https://github.com/takomak2012-cyber/GrafikSmen/releases">Скачать</a>
+      <a class="btn btn-ghost" href="#screens">Скриншоты</a>
+    </div>
+    <div class="facts">
+      <div class="fact"><b>1.31</b><span>текущая версия</span></div>
+      <div class="fact"><b>1117</b><span>городов России</span></div>
+      <div class="fact"><b>0 ₽</b><span>приложение бесплатно</span></div>
+      <div class="fact"><b>3</b><span>источника погоды</span></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Возможности</h2>
+    <p class="sub">Всё, что нужно для работы со сменным графиком, в одном приложении.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Готовые графики</h3>
+        <p>Шесть популярных схем смен — 2/2, 5/2, 6/1, 3/3, день-ночь-48 и сутки-трое.</p>
+      </div>
+      <div class="card">
+        <h3>Свой график</h3>
+        <p>Отмечаете дни цикла в календаре, приложение само собирает из них цикл:
+          дневные, ночные и суточные смены.</p>
+      </div>
+      <div class="card">
+        <h3>Календарь на месяц и год</h3>
+        <p>Цветовая маркировка каждого дня: дневная смена, ночная, суточная, выходной,
+          отпуск и больничный.</p>
+      </div>
+      <div class="card">
+        <h3>Ручные отметки</h3>
+        <p>Разовые изменения дней не сбивают основной график: отметили отпуск или
+          больничный — цикл продолжается как прежде.</p>
+      </div>
+      <div class="card">
+        <h3>Будильник на смену</h3>
+        <p>Ставится как настоящий будильник: обходит «Не беспокоить» и беззвучный режим.
+          Напоминание за 15 минут, полчаса, час, два часа или сутки — отдельно.</p>
+      </div>
+      <div class="card">
+        <h3>Погода на время смены</h3>
+        <p>Показывает погоду на утро, день, вечер или ночь — по времени начала ближайшей
+          смены, а не усреднение за все смены сразу.</p>
+        <ul>
+          <li>MET Norway</li>
+          <li>WeatherAPI.com</li>
+          <li>Open-Meteo</li>
+          <li>последние сохранённые данные без сети</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Расчёт заработка</h3>
+        <p>Указываете стоимость смены и период — приложение считает сумму за месяц и год.</p>
+      </div>
+      <div class="card">
+        <h3>Ночные и суточные смены</h3>
+        <p>Смены через полночь и смены на 24 часа. Своё время начала и окончания
+          для каждого вида смены.</p>
+      </div>
+    </div>
+    <div class="note">
+      <b>Про интернет.</b> График, календарь, будильник и расчёты работают полностью без сети.
+      Интернет нужен только для погоды. Если метеосервисы недоступны, показываются
+      последние полученные данные.
+    </div>
+  </div>
+</section>
+
+<section id="screens">
+  <div class="wrap">
+    <h2>Скриншоты</h2>
+    <p class="sub">Реальные экраны приложения на Android.</p>
+    <div class="shots">
+      <figure class="shot">
+        <img src="images/main.png" alt="Главный экран: график, погода и календарь">
+        <figcaption>График, ближайшая смена, погода и календарь на главном экране</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/weather.png" alt="Прогноз погоды на время смены">
+        <figcaption>Погода на время ближайшей смены и прогноз по дням</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/calendar.png" alt="Календарь и статистика месяца">
+        <figcaption>Календарь, статистика месяца и разделы приложения</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Скачать</h2>
+    <p class="sub">Последняя стабильная версия — 1.31.</p>
+    <div class="cta" style="justify-content:flex-start">
+      <a class="btn btn-primary" href="https://github.com/takomak2012-cyber/GrafikSmen/releases">Скачать GrafikSmen 1.31</a>
+    </div>
+    <div class="note">
+      <b>Установка.</b> Разрешите установку из неизвестных источников и откройте файл APK.
+      Требуется Android 7.0 или новее. Приложение подписано ключом разработчика,
+      поэтому обновление ставится поверх предыдущей версии без потери настроек.
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>График смен · com.grafik.smen · разработчик Вячеслав Долар</p>
+    <p>
+      <a href="https://github.com/takomak2012-cyber/GrafikSmen">Исходная страница проекта</a> ·
+      <a href="PRIVACY.md">Политика конфиденциальности</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
